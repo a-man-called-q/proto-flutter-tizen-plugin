@@ -1,4 +1,4 @@
-use proto_pdk::{Op, UnresolvedVersionSpec, Version};
+use version_spec::{Op, UnresolvedVersionSpec, Version};
 
 // flutter-tizen tags its releases as `<flutter>-tizen.<revision>`, which reads
 // as a semver pre-release. Requirements like `3.47` never match pre-releases,
@@ -101,7 +101,7 @@ pub fn normalize_spec(spec: &UnresolvedVersionSpec) -> Option<UnresolvedVersionS
 #[cfg(test)]
 mod tests {
     use super::*;
-    use proto_pdk::MatchesVersion;
+    use version_spec::MatchesVersion;
 
     static TAGS: &[&str] = &[
         "2.0.1",

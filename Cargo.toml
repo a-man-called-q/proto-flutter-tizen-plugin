@@ -9,12 +9,13 @@ publish = false
 crate-type = ["cdylib", "lib"]
 
 [dependencies]
-extism-pdk = "1.4.1"
-proto_pdk = "0.35.5"
+extism-pdk = { version = "1.4.1", optional = true }
+proto_pdk = { version = "0.35.5", optional = true }
 schematic = { version = "0.20.6", default-features = false, features = [
     "schema",
 ] }
 serde = { version = "1.0.228", features = ["derive"] }
+version_spec = "0.11.6"
 
 [dev-dependencies]
 proto_pdk_test_utils = "0.50.2"
@@ -23,7 +24,9 @@ tokio = { version = "1.53.1", features = ["full"] }
 
 [features]
 default = ["wasm"]
-wasm = []
+# The PDKs import host functions that only exist when running as WASM,
+# so they must stay out of native builds (tests).
+wasm = ["dep:extism-pdk", "dep:proto_pdk"]
 
 [profile.release]
 codegen-units = 1
