@@ -66,7 +66,8 @@ Homebrew, put `~/.cargo/bin` first on `PATH`.
 cargo build --target wasm32-wasip1
 ```
 
-Tests run against the built `.wasm` file, so build it first.
+Tests run against the built `.wasm` file, so build it first. They also create shims, which needs
+proto itself to be installed.
 
 ```bash
 cargo test --no-default-features
