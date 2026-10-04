@@ -1,0 +1,2 @@
+[plugins.tools]
+flutter-tizen = "file://./target/wasm32-wasip1/debug/flutter_tizen_plugin.wasm"
