@@ -73,7 +73,8 @@ proto itself to be installed.
 cargo test --no-default-features
 ```
 
-The test that sets up the Flutter SDK is ignored by default.
+The test that sets up the Flutter SDK is ignored by default. CI covers it with a real
+`proto install` on every platform instead.
 
 ```bash
 cargo test --no-default-features --test install_test -- --ignored
