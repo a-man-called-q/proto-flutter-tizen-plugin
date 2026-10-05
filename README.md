@@ -80,8 +80,12 @@ The test that sets up the Flutter SDK is ignored by default. CI covers it with a
 cargo test --no-default-features --test install_test -- --ignored
 ```
 
-The `.prototools` in this repository points `flutter-tizen` at the debug build, so `proto` commands
-run from here use the local plugin.
+The `.prototools` in this repository loads the published plugin. To run `proto` commands against a
+local build, point it at the debug build first, and leave that change out of your commits.
+
+```bash
+proto plugin add flutter-tizen "file://./target/wasm32-wasip1/debug/flutter_tizen_plugin.wasm"
+```
 
 ```bash
 proto --log trace install flutter-tizen

@@ -29,8 +29,8 @@ jobs:
       - run: cargo build --target wasm32-wasip1
       - run: cargo test --no-default-features
 
-  # Installs with the real proto binary, using the plugin from `.prototools`,
-  # then runs the tool through both `proto run` and its shim
+  # Installs with the real proto binary, then runs the tool through both
+  # `proto run` and its shim
   e2e:
     name: E2E
     runs-on: ${{ matrix.os }}
@@ -51,6 +51,8 @@ jobs:
           targets: wasm32-wasip1
       - uses: moonrepo/setup-toolchain@v0
       - run: cargo build --target wasm32-wasip1
+      # `.prototools` loads the published plugin, so test this build instead
+      - run: proto plugin add flutter-tizen "file://./target/wasm32-wasip1/debug/flutter_tizen_plugin.wasm"
       - run: proto install flutter-tizen "$PROTO_FLUTTER_TIZEN_VERSION"
       - run: proto run flutter-tizen -- --version | grep "Flutter 3.44.4"
       - run: |
